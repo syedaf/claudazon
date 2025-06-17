@@ -1,4 +1,4 @@
 
-1. The code from the app folder is available in the folder public/claude/source_code
-2. The code from everything outside the app folder is available in public/claude/miscellaneous
-3. The directory structure for 'app' is available in public/claude/miscellaneous/claudazon-structure.txt
+1. The code from the app folder is available in the folder public/claude/source_code/app
+2. The code from everything outside the app folder is available in public/claude/misc
+3. The directory structure for 'app' is available in public/claude/misc/structure.txt
