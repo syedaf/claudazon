@@ -1,0 +1,30 @@
+FILE MAPPING REFERENCE
+======================
+
+This file shows the mapping between original files and their .txt versions
+for Claude analysis via Vercel.
+
+RENAMED FILES:
+--------------
+favicon.ico → favicon.txt
+globals.css → globals.txt
+layout.tsx → layout.txt
+page.tsx → page.txt
+test-formatting.tsx → test-formatting.txt
+test-linting.tsx → test-linting.txt
+
+
+BY EXTENSION:
+-------------
+
+.css files:
+  globals.css → globals.txt
+
+.ico files:
+  favicon.ico → favicon.txt
+
+.tsx files:
+  layout.tsx → layout.txt
+  page.tsx → page.txt
+  test-formatting.tsx → test-formatting.txt
+  test-linting.tsx → test-linting.txt
