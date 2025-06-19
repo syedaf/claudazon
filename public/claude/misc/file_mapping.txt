@@ -6,10 +6,13 @@ for Claude analysis via Vercel.
 
 RENAMED FILES:
 --------------
+components\ui\button.tsx → components\ui\button.txt
 favicon.ico → favicon.txt
 globals.css → globals.txt
 layout.tsx → layout.txt
 page.tsx → page.txt
+products\page.tsx → products\page.txt
+test-button\page.tsx → test-button\page.txt
 test-formatting.tsx → test-formatting.txt
 test-linting.tsx → test-linting.txt
 
@@ -24,7 +27,10 @@ BY EXTENSION:
   favicon.ico → favicon.txt
 
 .tsx files:
+  button.tsx → button.txt
   layout.tsx → layout.txt
+  page.tsx → page.txt
+  page.tsx → page.txt
   page.tsx → page.txt
   test-formatting.tsx → test-formatting.txt
   test-linting.tsx → test-linting.txt

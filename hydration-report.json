@@ -1,0 +1,169 @@
+{
+  "timestamp": "2025-06-19T16:09:59.508Z",
+  "scannedFiles": 12,
+  "totalIssues": 18,
+  "issues": [
+    {
+      "file": "app\\page.tsx",
+      "line": 78,
+      "code": "src=\"/window.svg\"",
+      "pattern": "windowDocument",
+      "description": "Browser-specific APIs not available on server",
+      "severity": "MEDIUM",
+      "match": "window."
+    },
+    {
+      "file": "app\\page.tsx",
+      "line": 16,
+      "code": "<li className=\"mb-2 tracking-[-.01em]\">",
+      "pattern": "thirdPartyScripts",
+      "description": "Third-party analytics/tracking scripts",
+      "severity": "MEDIUM",
+      "match": "tracking"
+    },
+    {
+      "file": "app\\page.tsx",
+      "line": 23,
+      "code": "<li className=\"tracking-[-.01em]\">",
+      "pattern": "thirdPartyScripts",
+      "description": "Third-party analytics/tracking scripts",
+      "severity": "MEDIUM",
+      "match": "tracking"
+    },
+    {
+      "file": "hydration-detector.js",
+      "line": 193,
+      "code": "const id = Math.random();",
+      "pattern": "randomValues",
+      "description": "Random values that differ between server and client",
+      "severity": "HIGH",
+      "match": "Math.random()"
+    },
+    {
+      "file": "hydration-detector.js",
+      "line": 201,
+      "code": "const time = new Date().toLocaleString();",
+      "pattern": "dateTime",
+      "description": "Date/time operations that may differ between server and client",
+      "severity": "HIGH",
+      "match": "new Date()"
+    },
+    {
+      "file": "hydration-detector.js",
+      "line": 201,
+      "code": "const time = new Date().toLocaleString();",
+      "pattern": "dateTime",
+      "description": "Date/time operations that may differ between server and client",
+      "severity": "HIGH",
+      "match": ".toLocaleString()"
+    },
+    {
+      "file": "hydration-detector.js",
+      "line": 206,
+      "code": "const time = mounted ? new Date().toLocaleString() : '';`,",
+      "pattern": "dateTime",
+      "description": "Date/time operations that may differ between server and client",
+      "severity": "HIGH",
+      "match": "new Date()"
+    },
+    {
+      "file": "hydration-detector.js",
+      "line": 206,
+      "code": "const time = mounted ? new Date().toLocaleString() : '';`,",
+      "pattern": "dateTime",
+      "description": "Date/time operations that may differ between server and client",
+      "severity": "HIGH",
+      "match": ".toLocaleString()"
+    },
+    {
+      "file": "hydration-detector.js",
+      "line": 247,
+      "code": "timestamp: new Date().toISOString(),",
+      "pattern": "dateTime",
+      "description": "Date/time operations that may differ between server and client",
+      "severity": "HIGH",
+      "match": "new Date()"
+    },
+    {
+      "file": "hydration-detector.js",
+      "line": 210,
+      "code": "const value = localStorage.getItem('key');",
+      "pattern": "localStorage",
+      "description": "Browser storage APIs not available on server",
+      "severity": "HIGH",
+      "match": "localStorage."
+    },
+    {
+      "file": "hydration-detector.js",
+      "line": 215,
+      "code": "setValue(localStorage.getItem('key') || '');",
+      "pattern": "localStorage",
+      "description": "Browser storage APIs not available on server",
+      "severity": "HIGH",
+      "match": "localStorage."
+    },
+    {
+      "file": "hydration-detector.js",
+      "line": 220,
+      "code": "if (window.innerWidth > 768) { ... }",
+      "pattern": "windowDocument",
+      "description": "Browser-specific APIs not available on server",
+      "severity": "MEDIUM",
+      "match": "window."
+    },
+    {
+      "file": "hydration-detector.js",
+      "line": 225,
+      "code": "if (isMounted && window.innerWidth > 768) { ... }`",
+      "pattern": "windowDocument",
+      "description": "Browser-specific APIs not available on server",
+      "severity": "MEDIUM",
+      "match": "window."
+    },
+    {
+      "file": "hydration-detector.js",
+      "line": 220,
+      "code": "if (window.innerWidth > 768) { ... }",
+      "pattern": "conditionalWindow",
+      "description": "Conditional rendering based on browser objects",
+      "severity": "LOW",
+      "match": "if (window"
+    },
+    {
+      "file": "hydration-detector.js",
+      "line": 220,
+      "code": "if (window.innerWidth > 768) { ... }",
+      "pattern": "innerWidth",
+      "description": "Screen dimensions that differ between server and client",
+      "severity": "HIGH",
+      "match": "window.innerWidth"
+    },
+    {
+      "file": "hydration-detector.js",
+      "line": 225,
+      "code": "if (isMounted && window.innerWidth > 768) { ... }`",
+      "pattern": "innerWidth",
+      "description": "Screen dimensions that differ between server and client",
+      "severity": "HIGH",
+      "match": "window.innerWidth"
+    },
+    {
+      "file": "hydration-detector.js",
+      "line": 51,
+      "code": "regex: /(gtag\\(|ga\\(|fbq\\(|analytics\\.|tracking)/g,",
+      "pattern": "thirdPartyScripts",
+      "description": "Third-party analytics/tracking scripts",
+      "severity": "MEDIUM",
+      "match": "tracking"
+    },
+    {
+      "file": "hydration-detector.js",
+      "line": 52,
+      "code": "description: 'Third-party analytics/tracking scripts',",
+      "pattern": "thirdPartyScripts",
+      "description": "Third-party analytics/tracking scripts",
+      "severity": "MEDIUM",
+      "match": "tracking"
+    }
+  ]
+}

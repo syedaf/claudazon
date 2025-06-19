@@ -1,4 +1,11 @@
 app/
+├── components/
+│   └── ui/
+│       └── button.tsx
+├── products/
+│   └── page.tsx
+├── test-button/
+│   └── page.tsx
 ├── favicon.ico
 ├── globals.css
 ├── layout.tsx
