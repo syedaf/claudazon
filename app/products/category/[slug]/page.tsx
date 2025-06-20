@@ -1,6 +1,7 @@
 ;
-// app/products/[category]/page.tsx
+// app/products/category/[slug]/page.tsx
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { ProductCard } from '@/components/product/product-card';
 import { categories } from '@/lib/data/categories';
@@ -9,27 +10,16 @@ import { products } from '@/lib/data/products';
 
 interface CategoryPageProps {
   params: Promise<{
-    category: string;
+    slug: string;
   }>;
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
-  const { category: categorySlug } = await params;
+  const { slug: categorySlug } = await params;
   const category = categories.find(c => c.slug === categorySlug);
 
   if (!category) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">
-            Category Not Found
-          </h1>
-          <Link href="/products" className="text-blue-600 hover:text-blue-800">
-            Back to Products
-          </Link>
-        </div>
-      </div>
-    );
+    notFound();
   }
 
   // Filter products by category
@@ -81,9 +71,8 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
               {category.subcategories.map(subcategory => (
-                <Link
+                <div
                   key={subcategory.id}
-                  href={`/products/${category.slug}/${subcategory.slug}`}
                   className="flex items-center justify-between p-3 rounded hover:bg-gray-50 transition-colors border border-gray-100"
                 >
                   <div>
@@ -95,7 +84,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                     </span>
                   </div>
                   <ArrowRight className="h-4 w-4 text-gray-400" />
-                </Link>
+                </div>
               ))}
             </div>
           </div>

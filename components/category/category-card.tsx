@@ -1,7 +1,8 @@
 ;
-// components/category/category-card.tsx
+// components/category/category-card.tsx - Improved with route management
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import { ROUTES } from '@/lib/routes';
 import { Category } from '@/lib/types';
 
 
@@ -18,9 +19,8 @@ export function CategoryCard({ category }: CategoryCardProps) {
       {/* Subcategories List */}
       <div className="space-y-2 mb-4">
         {category.subcategories.map(subcategory => (
-          <Link
+          <div
             key={subcategory.id}
-            href={`/products/${category.slug}/${subcategory.slug}`}
             className="flex items-center justify-between p-2 rounded hover:bg-gray-50 transition-colors"
           >
             <div>
@@ -32,13 +32,13 @@ export function CategoryCard({ category }: CategoryCardProps) {
               </span>
             </div>
             <ArrowRight className="h-4 w-4 text-gray-400" />
-          </Link>
+          </div>
         ))}
       </div>
 
-      {/* View All Link */}
+      {/* View All Link - Using centralized route management */}
       <Link
-        href={`/products/${category.slug}`}
+        href={ROUTES.PRODUCT_CATEGORY(category.slug)}
         className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium"
       >
         View All {category.name}

@@ -1,5 +1,6 @@
 ;
 // app/products/[id]/page.tsx
+import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, Heart, Share2, ShoppingCart, Star } from 'lucide-react';
@@ -68,10 +69,13 @@ export default async function ProductDetailPage({
           {/* Product Image */}
           <div className="space-y-4">
             <div className="aspect-square bg-white rounded-lg border border-gray-200 p-8">
-              <img
+              <Image
                 src={product.imageUrl}
                 alt={product.title}
+                width={400}
+                height={400}
                 className="w-full h-full object-cover rounded-md"
+                priority
               />
             </div>
 
@@ -82,9 +86,11 @@ export default async function ProductDetailPage({
                   key={i}
                   className="aspect-square bg-gray-100 rounded border border-gray-200 p-2"
                 >
-                  <img
+                  <Image
                     src={product.imageUrl}
                     alt={`${product.title} view ${i}`}
+                    width={100}
+                    height={100}
                     className="w-full h-full object-cover rounded opacity-60"
                   />
                 </div>

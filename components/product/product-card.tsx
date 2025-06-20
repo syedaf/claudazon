@@ -1,7 +1,9 @@
 ;
-// components/product/product-card.tsx
+// components/product/product-card.tsx - Improved with route management
+import Link from 'next/link';
 import { Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { ROUTES } from '@/lib/routes';
 import { Product } from '@/lib/types';
 
 
@@ -10,22 +12,29 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product }: ProductCardProps) {
+  const productUrl = ROUTES.PRODUCT_DETAIL(product.id);
+
   return (
     <div className="bg-white rounded-lg border border-gray-200 p-4 hover:shadow-lg transition-shadow">
-      {/* Product Image */}
-      <div className="aspect-square mb-3 overflow-hidden rounded-md bg-gray-100">
-        <img
-          src={product.imageUrl}
-          alt={product.title}
-          className="h-full w-full object-cover hover:scale-105 transition-transform duration-200"
-        />
-      </div>
+      {/* Product Image - Clickable */}
+      <Link href={productUrl}>
+        <div className="aspect-square mb-3 overflow-hidden rounded-md bg-gray-100 cursor-pointer">
+          <img
+            src={product.imageUrl}
+            alt={product.title}
+            className="h-full w-full object-cover hover:scale-105 transition-transform duration-200"
+          />
+        </div>
+      </Link>
 
       {/* Product Info */}
       <div className="space-y-2">
-        <h3 className="font-medium text-sm line-clamp-2 text-gray-900">
-          {product.title}
-        </h3>
+        {/* Product Title - Clickable */}
+        <Link href={productUrl}>
+          <h3 className="font-medium text-sm line-clamp-2 text-gray-900 hover:text-blue-600 cursor-pointer">
+            {product.title}
+          </h3>
+        </Link>
 
         {/* Rating */}
         <div className="flex items-center gap-1">
@@ -63,6 +72,13 @@ export function ProductCard({ product }: ProductCardProps) {
         <Button className="w-full" size="sm">
           Add to Cart
         </Button>
+
+        {/* View Details Link */}
+        <Link href={productUrl}>
+          <Button variant="outline" className="w-full" size="sm">
+            View Details
+          </Button>
+        </Link>
       </div>
     </div>
   );

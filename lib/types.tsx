@@ -1,13 +1,14 @@
-// lib/types.ts
 export interface Product {
   id: string;
   title: string;
   price: number;
+  originalPrice?: number; // Add this optional property
   rating: number;
   reviewCount: number;
   imageUrl: string;
   category: string;
   isPrime: boolean;
+  description?: string; // Add this optional property
 }
 
 export interface Category {

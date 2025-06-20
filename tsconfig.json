@@ -47,6 +47,9 @@
       ],
       "@/lib/types": [
         "lib/types"
+      ],
+      "@/lib/routes": [
+        "lib/routes"
       ]
     }
   },
