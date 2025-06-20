@@ -8,13 +8,13 @@ import { products } from '@/lib/data/products';
 
 
 interface CategoryPageProps {
-  params: {
+  params: Promise<{
     category: string;
-  };
+  }>;
 }
 
-export default function CategoryPage({ params }: CategoryPageProps) {
-  const categorySlug = params.category;
+export default async function CategoryPage({ params }: CategoryPageProps) {
+  const { category: categorySlug } = await params;
   const category = categories.find(c => c.slug === categorySlug);
 
   if (!category) {
