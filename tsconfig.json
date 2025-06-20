@@ -27,11 +27,26 @@
       //      "@/*": [
       //        "./*"
       //      ]
-      "@/components/*": [
-        "app/components/*"
+      //      "@/components/*": [
+      //        "app/components/*"
+      //      ],
+      "@/components/product/*": [
+        "components/product/*"
+      ],
+      "@/components/category/*": [
+        "components/category/*"
+      ],
+      "@/components/ui/*": [
+        "components/ui/*"
+      ],
+      "@/lib/data/*": [
+        "lib/data/*"
       ],
       "@/lib/utils": [
         "lib/utils"
+      ],
+      "@/lib/types": [
+        "lib/types"
       ]
     }
   },
