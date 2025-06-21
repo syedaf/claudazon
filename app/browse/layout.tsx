@@ -1,5 +1,6 @@
 ;
 // app/browse/layout.tsx - Optional: Shared layout for browse section
+// app/browse/layout.tsx - Optional: Shared layout for browse section
 import { Metadata } from 'next';
 
 
