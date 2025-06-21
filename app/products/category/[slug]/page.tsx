@@ -1,5 +1,5 @@
 ;
-// app/products/category/[slug]/page.tsx
+// app/products/category/[slug]/page.tsx - Clean ID-based filtering
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
@@ -16,16 +16,17 @@ interface CategoryPageProps {
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const { slug: categorySlug } = await params;
+
+  // Find category by slug (URL-safe identifier)
   const category = categories.find(c => c.slug === categorySlug);
 
   if (!category) {
     notFound();
   }
 
-  // Filter products by category
+  // Filter products by categoryId (proper relationship)
   const categoryProducts = products.filter(
-    product =>
-      product.category.toLowerCase().replace(/\s+/g, '-') === categorySlug
+    product => product.categoryId === category.id
   );
 
   return (
