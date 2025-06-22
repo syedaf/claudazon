@@ -210,7 +210,7 @@ export default async function SearchPage({
       <div className="bg-white border-b border-gray-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center gap-4 mb-4">
-            <Link href="/">
+            <Link href="/public">
               <Button variant="ghost" size="sm" className="hover:bg-gray-100">
                 <ArrowLeft className="h-4 w-4 mr-2" />
                 Back to Home
