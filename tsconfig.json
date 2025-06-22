@@ -42,6 +42,9 @@
       "@/components/search/*": [
         "components/search/*"
       ],
+      "@/components/layout/*": [
+        "components/layout/*"
+      ],
       "@/lib/data/*": [
         "lib/data/*"
       ],

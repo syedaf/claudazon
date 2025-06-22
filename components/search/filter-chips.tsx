@@ -64,7 +64,7 @@ export function FilterChips({
       {searchQuery && (
         <Link href={removeSearch()}>
           <div className="inline-flex items-center gap-1 bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm hover:bg-blue-200 transition-colors cursor-pointer">
-            <span>Search: "{searchQuery}"</span>
+            <span>Search: {`"{searchQuery}"`}</span>
             <X className="h-3 w-3" />
           </div>
         </Link>
