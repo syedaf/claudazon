@@ -39,6 +39,9 @@
       "@/components/ui/*": [
         "components/ui/*"
       ],
+      "@/components/search/*": [
+        "components/search/*"
+      ],
       "@/lib/data/*": [
         "lib/data/*"
       ],
