@@ -15,6 +15,11 @@
   --accent-foreground: #171717;
   --ring: #171717;
   --input: #e5e5e5;
+  --amazon-orange: #ff9900;
+  --amazon-blue: #232f3e;
+  --amazon-dark: #131921;
+  --amazon-light-blue: #37475a;
+  --amazon-yellow: #febd69;
 }
 
 @theme inline {
@@ -62,3 +67,9 @@ body {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 }
+
+.bg-amazon-orange { background-color: var(--amazon-orange); }
+.bg-amazon-blue { background-color: var(--amazon-blue); }
+.bg-amazon-dark { background-color: var(--amazon-dark); }
+.text-amazon-blue { color: var(--amazon-blue); }
+.text-amazon-orange { color: var(--amazon-orange); }
