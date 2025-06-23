@@ -18,11 +18,11 @@ interface ShopLayoutProps {
 
 export default function ShopLayout({ children }: ShopLayoutProps) {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gray-50">
       <ShopHeader />
       <div className="flex flex-1">
         <ShopSidebar />
-        <main className="flex-1 bg-gray-50 p-4">
+        <main className="flex-1 p-4">
           <div className="max-w-6xl mx-auto">{children}</div>
         </main>
       </div>
