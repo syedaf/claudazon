@@ -9,7 +9,7 @@ export default function ProductsPage() {
     <div>
       {/* Page Title */}
       <div className="mb-8">
-        <h2 className="text-3xl font-bold text-gray-900 mb-2">Products</h2>
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Products</h1>
         <p className="text-gray-600">
           Discover our collection of amazing products
         </p>
@@ -17,9 +17,9 @@ export default function ProductsPage() {
 
       {/* Categories Section */}
       <section className="mb-12">
-        <h3 className="text-2xl font-semibold text-gray-900 mb-6">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6">
           Shop by Category
-        </h3>
+        </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           {categories.map(category => (
             <CategoryCard key={category.id} category={category} />
@@ -29,9 +29,9 @@ export default function ProductsPage() {
 
       {/* Featured Products Section */}
       <section>
-        <h3 className="text-2xl font-semibold text-gray-900 mb-6">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6">
           Featured Products
-        </h3>
+        </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {products.map((product: Product) => (
             <ProductCard key={product.id} product={product} />

@@ -1,137 +1,118 @@
-@import "tailwindcss/preflight";
-@tailwind utilities;
+/* Tailwind CSS Import - Includes base, components, and utilities */
+@import "tailwindcss";
 
-/* CSS Custom Properties for Layout System */
+/* CSS Custom Properties - Design System Foundation */
 :root {
-  /* Color System */
+  /* ShadCN/UI Theme Variables */
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary: #171717;
+  --primary-foreground: #ffffff;
+  --secondary: #f5f5f5;
+  --secondary-foreground: #171717;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --accent: #f5f5f5;
+  --accent-foreground: #171717;
+  --ring: #171717;
+  --input: #e5e5e5;
+
+  /* Claudazon Brand Colors */
   --amazon-orange: #ff9900;
   --amazon-dark: #131921;
   --amazon-light: #232f3e;
   --amazon-blue: #007185;
   --amazon-yellow: #febd69;
 
-  /* Layout Variables */
+  /* Layout System Variables */
   --header-height: 60px;
   --sidebar-width: 250px;
-  --footer-height: auto;
   --content-max-width: 1200px;
-
-  /* Spacing */
   --container-padding: 1rem;
   --section-gap: 2rem;
 
-  /* Shadows */
+  /* Elevation System */
   --box-shadow-light: 0 2px 4px rgba(0,0,0,0.1);
   --box-shadow-medium: 0 4px 8px rgba(0,0,0,0.15);
   --box-shadow-heavy: 0 8px 16px rgba(0,0,0,0.2);
 }
 
-/* Base Styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --primary: #ededed;
+    --primary-foreground: #0a0a0a;
+    --secondary: #1a1a1a;
+    --secondary-foreground: #ededed;
+    --accent: #1a1a1a;
+    --accent-foreground: #ededed;
+    --ring: #ededed;
+    --input: #333333;
+  }
 }
 
+/* Tailwind Theme Integration */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+}
+
+/* Base Body Styles - Minimal and Tailwind-Friendly */
 body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: system-ui, -apple-system, sans-serif;
   line-height: 1.6;
-  color: #333;
-  background-color: #fafafa;
 }
 
-/* Typography Scale */
-h1, h2, h3, h4, h5, h6 {
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  line-height: 1.2;
+/* Custom Utility Classes */
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.75rem; }
-h4 { font-size: 1.5rem; }
-h5 { font-size: 1.25rem; }
-h6 { font-size: 1rem; }
-
-/* Link Styles */
-a {
-  color: var(--amazon-blue);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-a:hover {
-  color: var(--amazon-orange);
-  text-decoration: underline;
-}
-
-/* Button Base Styles */
-button {
-  cursor: pointer;
-  border: none;
-  border-radius: 4px;
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-/* Layout Utilities */
-.container {
+.container-custom {
   max-width: var(--content-max-width);
   margin: 0 auto;
   padding: 0 var(--container-padding);
 }
 
-.layout-grid {
-  display: grid;
-  min-height: 100vh;
-  grid-template-rows: auto 1fr auto;
+.glass-effect {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.layout-flex {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
+/* Accessibility Focus Styles */
+*:focus-visible {
+  outline: 2px solid var(--amazon-blue);
+  outline-offset: 2px;
 }
 
-/* Component Base Classes */
-.card {
-  background: white;
-  border-radius: 8px;
-  padding: 1.5rem;
-  box-shadow: var(--box-shadow-light);
-  border: 1px solid #e1e5e9;
-}
-
-.card:hover {
-  box-shadow: var(--box-shadow-medium);
-}
-
-/* Responsive Design */
+/* Responsive Layout Variables */
 @media (max-width: 768px) {
   :root {
     --sidebar-width: 0px;
     --container-padding: 0.5rem;
     --section-gap: 1rem;
   }
-
-  h1 { font-size: 2rem; }
-  h2 { font-size: 1.75rem; }
-  h3 { font-size: 1.5rem; }
 }
 
-/* Focus Styles for Accessibility */
-button:focus,
-a:focus,
-input:focus,
-select:focus,
-textarea:focus {
-  outline: 2px solid var(--amazon-blue);
-  outline-offset: 2px;
-}
-
-/* Print Styles */
+/* Print Optimization */
 @media print {
   .no-print {
     display: none !important;
