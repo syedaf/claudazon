@@ -1,7 +1,5 @@
 ;
-// app/products/[id]/not-found.tsx
-
-// app/products/[id]/not-found.tsx
+/* app/products/[id]/not-found.tsx */
 import Link from 'next/link';
 import { ArrowLeft, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
