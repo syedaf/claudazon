@@ -1,66 +1,89 @@
+;
+// app/(admin)/dashboard/page.tsx - Updated with loading test
 import { DollarSign, Package, ShoppingCart, Users } from 'lucide-react';
 
-export default function AdminDashboard() {
-  const stats = [
-    {
-      name: 'Total Products',
-      value: '2,451',
-      icon: Package,
-      change: '+12%',
-      changeType: 'positive',
-    },
-    {
-      name: 'Orders Today',
-      value: '127',
-      icon: ShoppingCart,
-      change: '+5%',
-      changeType: 'positive',
-    },
-    {
-      name: 'Active Users',
-      value: '2,341',
-      icon: Users,
-      change: '+18%',
-      changeType: 'positive',
-    },
-    {
-      name: 'Revenue',
-      value: '$12,450',
-      icon: DollarSign,
-      change: '-3%',
-      changeType: 'negative',
-    },
-  ];
 
-  const recentOrders = [
-    {
-      id: 'ORD-001',
-      customer: 'John Doe',
-      amount: '$129.99',
-      status: 'Processing',
-    },
-    {
-      id: 'ORD-002',
-      customer: 'Jane Smith',
-      amount: '$79.50',
-      status: 'Shipped',
-    },
-    {
-      id: 'ORD-003',
-      customer: 'Bob Johnson',
-      amount: '$245.00',
-      status: 'Delivered',
-    },
-    {
-      id: 'ORD-004',
-      customer: 'Alice Brown',
-      amount: '$89.99',
-      status: 'Processing',
-    },
-  ];
+// Simulate slow loading for testing loading states
+async function SlowDataFetch() {
+  // Artificial delay to test loading.tsx
+  await new Promise(resolve => setTimeout(resolve, 3000)); // 3 second delay
+
+  return {
+    stats: [
+      {
+        name: 'Total Products',
+        value: '2,451',
+        icon: Package,
+        change: '+12%',
+        changeType: 'positive',
+      },
+      {
+        name: 'Orders Today',
+        value: '127',
+        icon: ShoppingCart,
+        change: '+5%',
+        changeType: 'positive',
+      },
+      {
+        name: 'Active Users',
+        value: '2,341',
+        icon: Users,
+        change: '+18%',
+        changeType: 'positive',
+      },
+      {
+        name: 'Revenue',
+        value: '$12,450',
+        icon: DollarSign,
+        change: '-3%',
+        changeType: 'negative',
+      },
+    ],
+    recentOrders: [
+      {
+        id: 'ORD-001',
+        customer: 'John Doe',
+        amount: '$129.99',
+        status: 'Processing',
+      },
+      {
+        id: 'ORD-002',
+        customer: 'Jane Smith',
+        amount: '$79.50',
+        status: 'Shipped',
+      },
+      {
+        id: 'ORD-003',
+        customer: 'Bob Johnson',
+        amount: '$245.00',
+        status: 'Delivered',
+      },
+      {
+        id: 'ORD-004',
+        customer: 'Alice Brown',
+        amount: '$89.99',
+        status: 'Processing',
+      },
+    ],
+  };
+}
+
+export default async function AdminDashboard() {
+  // Fetch data with artificial delay to test loading states
+  const { stats, recentOrders } = await SlowDataFetch();
 
   return (
     <div>
+      {/* Loading Test Banner - Remove in production */}
+      {process.env.NODE_ENV === 'development' && (
+        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-6">
+          <p className="text-yellow-800 text-sm">
+            🧪 <strong>Loading Test Mode:</strong> 3-second artificial delay
+            added to test loading.tsx
+          </p>
+        </div>
+      )}
+
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
         <p className="text-gray-600">
@@ -170,6 +193,21 @@ export default function AdminDashboard() {
           </div>
         </div>
       </div>
+
+      {/* Loading Performance Info - Development Only */}
+      {process.env.NODE_ENV === 'development' && (
+        <div className="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <h4 className="text-blue-900 font-medium mb-2">
+            🔄 Loading State Test Results:
+          </h4>
+          <div className="text-blue-800 text-sm space-y-1">
+            <p>• Navigate away and back to see the loading.tsx in action</p>
+            <p>• Check that the AdminDashboardSkeleton appears for 3 seconds</p>
+            <p>• Verify smooth transition from skeleton to real content</p>
+            <p>• Remove the artificial delay before production deployment</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

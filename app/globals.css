@@ -133,3 +133,14 @@ body {
     transform: translateY(0);
   }
 }
+
+/* Shimmer animation for professional loading */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Loading grid utility */
+.loading-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6;
+}
