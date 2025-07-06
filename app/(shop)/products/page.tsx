@@ -13,6 +13,9 @@ export default function ProductsPage() {
         <p className="text-gray-600">
           Discover our collection of amazing products
         </p>
+        <div className="fixed bottom-4 right-4 bg-white border border-gray-300 rounded-lg p-4 shadow-lg">
+          <h4 className="text-sm font-semibold mb-2">Dev Error Test</h4>
+        </div>
       </div>
 
       {/* Categories Section */}
@@ -26,7 +29,6 @@ export default function ProductsPage() {
           ))}
         </div>
       </section>
-
       {/* Featured Products Section */}
       <section>
         <h2 className="text-2xl font-semibold text-gray-900 mb-6">

@@ -3,9 +3,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { ArrowLeft, Heart, Share2, ShoppingCart, Star } from 'lucide-react';
+import { ErrorTrigger } from '@components/dev/error-trigger';
 import { Button } from '@components/ui/button';
 import { products } from '@lib/data/products';
-import { ArrowLeft, Heart, Share2, ShoppingCart, Star } from 'lucide-react';
 
 
 interface ProductDetailPageProps {
@@ -29,6 +30,7 @@ export default async function ProductDetailPage({
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <ErrorTrigger />
       {/* Header */}
       <header className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 py-4">
@@ -63,7 +65,6 @@ export default async function ProductDetailPage({
             Back to Products
           </Link>
         </div>
-
         {/* Product Detail Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Product Image */}
@@ -225,7 +226,6 @@ export default async function ProductDetailPage({
             </div>
           </div>
         </div>
-
         {/* Product Tabs Section */}
         <div className="mt-16">
           <div className="border-b border-gray-200">

@@ -1,88 +1,38 @@
 ;
-/* app/products/[id]/not-found.tsx */
-import Link from 'next/link';
-import { Button } from '@components/ui/button';
-import { ArrowLeft, Search } from 'lucide-react';
+// app/(shop)/products/[id]/not-found.tsx (15 lines)
+import { ArrowLeft, Search, ShoppingBag } from 'lucide-react';
 
 
 export default function ProductNotFound() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 py-4">
-          <h1 className="text-2xl font-bold text-gray-900">Claudazon</h1>
-        </div>
-      </header>
-
-      <main className="max-w-7xl mx-auto px-4 py-16">
-        <div className="text-center">
-          {/* 404 Message */}
-          <div className="mb-8">
-            <h1 className="text-6xl font-bold text-gray-900 mb-4">Error 404</h1>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-2">
-              Product Not Found
-            </h2>
-            <p className="text-gray-600 max-w-md mx-auto">
-              {`Sorry, we couldn't find the product you're looking for. It may
-              have been removed or the link might be incorrect.`}
-            </p>
-          </div>
-
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link href="/products">
-              <Button variant="default" size="lg" className="min-w-48">
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Products
-              </Button>
-            </Link>
-
-            <Link href="/products">
-              <Button variant="outline" size="lg" className="min-w-48">
-                <Search className="h-4 w-4 mr-2" />
-                Search Products
-              </Button>
-            </Link>
-          </div>
-
-          {/* Helpful Suggestions */}
-          <div className="mt-12 bg-white rounded-lg border border-gray-200 p-6 max-w-md mx-auto">
-            <h3 className="font-semibold text-gray-900 mb-4">
-              You might be interested in:
-            </h3>
-            <div className="space-y-2 text-sm">
-              <Link
-                href="/products/electronics"
-                className="block text-blue-600 hover:text-blue-800"
-              >
-                Browse Electronics
-              </Link>
-              <Link
-                href="/products/home-kitchen"
-                className="block text-blue-600 hover:text-blue-800"
-              >
-                Browse Home & Kitchen
-              </Link>
-              <Link
-                href="/products"
-                className="block text-blue-600 hover:text-blue-800"
-              >
-                View All Products
-              </Link>
-            </div>
-          </div>
-        </div>
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-white border-t border-gray-200 mt-16">
-        <div className="max-w-7xl mx-auto px-4 py-8">
-          <p className="text-center text-gray-600">
-            © 2025 Claudazon. Built with Next.js App Router
+    <div className="min-h-[400px] flex items-center justify-center p-8">
+      <div className="text-center space-y-6">
+        <ShoppingBag className="h-12 w-12 text-gray-400 mx-auto" />
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">
+            Product Not Found
+          </h2>
+          <p className="text-gray-600">
+            {`This product may have been removed or doesn't exist.`}
           </p>
         </div>
-      </footer>
+        <div className="flex gap-3 justify-center">
+          <a
+            href="/products"
+            className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 flex items-center"
+          >
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Back to Products
+          </a>
+          <a
+            href="/search"
+            className="bg-gray-100 text-gray-900 px-4 py-2 rounded-md hover:bg-gray-200 flex items-center"
+          >
+            <Search className="h-4 w-4 mr-2" />
+            Search Products
+          </a>
+        </div>
+      </div>
     </div>
   );
 }
