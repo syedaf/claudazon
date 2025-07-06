@@ -2,9 +2,9 @@
 // components/product/product-card.tsx - Improved with route management
 import Link from 'next/link';
 import { Star } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { ROUTES } from '@/lib/routes';
-import { Product } from '@/lib/types';
+import { Button } from '@components/ui/button';
+import { ROUTES } from '@lib/routes';
+import { Product } from '@lib/types';
 
 
 interface ProductCardProps {

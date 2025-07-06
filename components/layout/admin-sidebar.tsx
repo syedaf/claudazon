@@ -16,16 +16,16 @@ import {
 } from 'lucide-react';
 
 const navigation = [
-  { name: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
-  { name: 'Inventory', href: '/admin/inventory', icon: Package },
-  { name: 'Orders', href: '/admin/orders', icon: ShoppingCart },
-  { name: 'Customers', href: '/admin/customers', icon: Users },
-  { name: 'Analytics', href: '/admin/analytics', icon: BarChart3 },
-  { name: 'Reports', href: '/admin/reports', icon: FileText },
-  { name: 'Shipping', href: '/admin/shipping', icon: Truck },
-  { name: 'Revenue', href: '/admin/revenue', icon: DollarSign },
-  { name: 'Issues', href: '/admin/issues', icon: AlertCircle },
-  { name: 'Settings', href: '/admin/settings', icon: Settings },
+  { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
+  { name: 'Inventory', href: '/inventory', icon: Package },
+  { name: 'Orders', href: '/orders', icon: ShoppingCart },
+  { name: 'Customers', href: '/customers', icon: Users },
+  { name: 'Analytics', href: '/analytics', icon: BarChart3 },
+  { name: 'Reports', href: '/reports', icon: FileText },
+  { name: 'Shipping', href: '/shipping', icon: Truck },
+  { name: 'Revenue', href: '/revenue', icon: DollarSign },
+  { name: 'Issues', href: '/issues', icon: AlertCircle },
+  { name: 'Settings', href: '/settings', icon: Settings },
 ];
 
 export default function AdminSidebar() {

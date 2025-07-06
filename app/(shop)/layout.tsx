@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
-import ShopFooter from '@/components/layout/shop-footer';
-import ShopHeader from '@/components/layout/shop-header';
-import ShopSidebar from '@/components/layout/shop-sidebar';
+import ShopFooter from '@components/layout/shop-footer';
+import ShopHeader from '@components/layout/shop-header';
+import ShopSidebar from '@components/layout/shop-sidebar';
 
 export const metadata: Metadata = {
   title: {

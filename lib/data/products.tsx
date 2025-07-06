@@ -1,6 +1,7 @@
 ;
 // lib/data/products.ts
-import { Product } from '@/lib/types';
+// lib/data/products.ts
+import { Product } from '@lib/types';
 
 
 export const products: Product[] = [

@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
-import AdminHeader from '@/components/layout/admin-header';
-import AdminSidebar from '@/components/layout/admin-sidebar';
+import AdminHeader from '@components/layout/admin-header';
+import AdminSidebar from '@components/layout/admin-sidebar';
 
 export const metadata: Metadata = {
   title: {

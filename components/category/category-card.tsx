@@ -1,9 +1,9 @@
 ;
 // components/category/category-card.tsx - Improved with route management
 import Link from 'next/link';
+import { ROUTES } from '@lib/routes';
+import { Category } from '@lib/types';
 import { ArrowRight } from 'lucide-react';
-import { ROUTES } from '@/lib/routes';
-import { Category } from '@/lib/types';
 
 
 interface CategoryCardProps {

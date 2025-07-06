@@ -2,11 +2,11 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, Crown, Grid, List, Search, Star } from 'lucide-react';
-import { FilterChips } from '@/components/search/filter-chips';
-import { FilterSidebar } from '@/components/search/filter-sidebar';
-import { SearchBar } from '@/components/search/search-bar';
-import { Button } from '@/components/ui/button';
-import { products } from '@/lib/data/products';
+import { FilterChips } from '@components/search/filter-chips';
+import { FilterSidebar } from '@components/search/filter-sidebar';
+import { SearchBar } from '@components/search/search-bar';
+import { Button } from '@components/ui/button';
+import { products } from '@lib/data/products';
 
 interface SearchPageProps {
   params: Promise<{

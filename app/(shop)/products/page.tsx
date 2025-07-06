@@ -1,8 +1,8 @@
-import { CategoryCard } from '@/components/category/category-card';
-import { ProductCard } from '@/components/product/product-card';
-import { categories } from '@/lib/data/categories';
-import { products } from '@/lib/data/products';
-import { Product } from '@/lib/types';
+import { CategoryCard } from '@components/category/category-card';
+import { ProductCard } from '@components/product/product-card';
+import { categories } from '@lib/data/categories';
+import { products } from '@lib/data/products';
+import { Product } from '@lib/types';
 
 export default function ProductsPage() {
   return (

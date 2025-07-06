@@ -24,38 +24,11 @@
     ],
     "baseUrl": ".",
     "paths": {
-      //      "@/*": [
-      //        "./*"
-      //      ]
-      //      "@/components/*": [
-      //        "app/components/*"
-      //      ],
-      "@/components/product/*": [
-        "components/product/*"
+      "@components/*": [
+        "components/*"
       ],
-      "@/components/category/*": [
-        "components/category/*"
-      ],
-      "@/components/ui/*": [
-        "components/ui/*"
-      ],
-      "@/components/search/*": [
-        "components/search/*"
-      ],
-      "@/components/layout/*": [
-        "components/layout/*"
-      ],
-      "@/lib/data/*": [
-        "lib/data/*"
-      ],
-      "@/lib/utils": [
-        "lib/utils"
-      ],
-      "@/lib/types": [
-        "lib/types"
-      ],
-      "@/lib/routes": [
-        "lib/routes"
+      "@lib/*": [
+        "lib/*"
       ]
     }
   },
