@@ -1,7 +1,7 @@
 ;
-// app/(shop)/products/[id]/not-found.tsx (enhanced existing)
+// app/(shop)/products/not-found.tsx
 import { Metadata } from 'next';
-import { ShoppingBag } from 'lucide-react';
+import { Package } from 'lucide-react';
 import { NotFoundLayout } from '@components/error/not-found-layout';
 import { SuggestedProducts } from '@components/error/suggested-products';
 import { generateNotFoundMetadata } from '@lib/not-found-utils';
@@ -9,23 +9,23 @@ import { SuggestionEngine } from '@lib/suggestions';
 
 
 export const metadata: Metadata = generateNotFoundMetadata(
-  'product',
+  'products',
   'Product Not Found - Claudazon'
 );
 
-export default async function ProductNotFound() {
+export default async function ProductsNotFound() {
   const suggestedProducts = await SuggestionEngine.getProductSuggestions();
 
   return (
     <NotFoundLayout
-      icon={<ShoppingBag className="h-12 w-12 text-gray-400" />}
+      icon={<Package className="h-12 w-12 text-gray-400" />}
       title="Product Not Found"
-      description="This product may have been removed or doesn't exist."
+      description="The product you're looking for is not available. It may have been removed or is out of stock."
       section="products"
       suggestions={
         <SuggestedProducts
           products={suggestedProducts}
-          title="Similar products you might like"
+          title="Popular products you might like"
         />
       }
     />
