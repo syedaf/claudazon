@@ -3,8 +3,8 @@
 
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import { ProductTracker } from '@components/analytics/product-tracker';
-import { analytics } from '@lib/analytics';
+import { ProductTracker } from '@/_shared/components/analytics/product-tracker';
+import { analytics, Analytics } from '@/_shared/lib/analytics';
 
 export default function ProductTemplate({
   children,
@@ -15,7 +15,7 @@ export default function ProductTemplate({
 
   useEffect(() => {
     /* Track product section visits */
-    analytics.track('product_section_view', {
+    Analytics.track('product_section_view', {
       pathname,
       timestamp: Date.now(),
     });

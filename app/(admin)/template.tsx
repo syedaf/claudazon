@@ -3,7 +3,7 @@
 
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import { analytics } from '@/_shared/lib/analytics';
+import { Analytics } from '@/_shared/lib/analytics';
 import { AdminActivityMonitor } from './_components/admin-monitor';
 
 export default function AdminTemplate({
@@ -15,7 +15,7 @@ export default function AdminTemplate({
 
   useEffect(() => {
     // Track admin activity with enhanced context
-    analytics.track('admin_page_access', {
+    Analytics.track('admin_page_access', {
       pathname,
       timestamp: Date.now(),
       userAgent: navigator.userAgent,

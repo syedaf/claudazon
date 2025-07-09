@@ -2,9 +2,9 @@
 // app/not-found.tsx (enhanced)
 import { Metadata } from 'next';
 import { AlertTriangle } from 'lucide-react';
-import { NotFoundLayout } from '@components/error/not-found-layout';
-import { RecoveryActions } from '@components/error/recovery-actions';
-import { generateNotFoundMetadata } from '@lib/not-found-utils';
+import { NotFoundLayout } from '@/_shared/components/error/not-found-layout';
+import { RecoveryActions } from '@/_shared/components/error/recovery-actions';
+import { generateNotFoundMetadata } from '@/_shared/lib/not-found-utils';
 
 
 export const metadata: Metadata = generateNotFoundMetadata(

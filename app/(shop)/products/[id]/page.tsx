@@ -4,9 +4,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, Heart, Share2, ShoppingCart, Star } from 'lucide-react';
-import { ErrorTrigger } from '@components/dev/error-trigger';
-import { Button } from '@components/ui/button';
-import { products } from '@lib/data/products';
+import { ErrorTrigger } from '@/_shared/components/dev/error-trigger';
+import { Button } from '@/_shared/components/ui/button';
+import { products } from '@/_shared/lib/data/products';
 
 
 interface ProductDetailPageProps {

@@ -1,68 +1,123 @@
 ;
 // app/(api)/_middleware/rate-limit.ts
 import { NextRequest } from 'next/server';
+import { MiddlewareContext, MiddlewareFunction } from './compose';
 
 
-interface RateLimitResult {
-  success: boolean;
-  error?: string;
-  remaining?: number;
+interface RateLimitOptions {
+  maxRequests: number;
+  windowMs: number;
+  keyGenerator?: (request: NextRequest) => string;
 }
 
-// Simple in-memory rate limiting (use Redis in production)
+// In-memory store for demo (use Redis in production)
 const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
 
-export async function applyRateLimit(
-  request: NextRequest,
-  maxRequests: number = 100,
-  windowMs: number = 60000 // 1 minute
-): Promise<RateLimitResult> {
-  try {
-    const clientId = getClientId(request);
-    const now = Date.now();
-    const windowStart = now - windowMs;
+export const rateLimitMiddleware = (
+  options: RateLimitOptions
+): MiddlewareFunction => {
+  const { maxRequests, windowMs, keyGenerator } = options;
 
-    // Clean up old entries
-    for (const [key, value] of rateLimitStore.entries()) {
-      if (value.resetTime < now) {
-        rateLimitStore.delete(key);
+  return async (request: NextRequest, context: MiddlewareContext) => {
+    try {
+      // Generate key for rate limiting (IP address by default)
+      const key = keyGenerator ? keyGenerator(request) : getClientIP(request);
+
+      const now = Date.now();
+      const windowStart = now - windowMs;
+
+      // Get current rate limit data
+      let limitData = rateLimitStore.get(key);
+
+      // Reset if window has expired
+      if (!limitData || limitData.resetTime < windowStart) {
+        limitData = {
+          count: 0,
+          resetTime: now + windowMs,
+        };
       }
-    }
 
-    const current = rateLimitStore.get(clientId);
+      // Increment request count
+      limitData.count++;
+      rateLimitStore.set(key, limitData);
 
-    if (!current || current.resetTime < windowStart) {
-      // First request in window or window has expired
-      rateLimitStore.set(clientId, {
-        count: 1,
-        resetTime: now + windowMs,
-      });
-      return { success: true, remaining: maxRequests - 1 };
-    }
+      // Check if limit exceeded
+      if (limitData.count > maxRequests) {
+        return {
+          success: false,
+          error: `Rate limit exceeded. Max ${maxRequests} requests per ${windowMs / 1000} seconds`,
+        };
+      }
 
-    if (current.count >= maxRequests) {
+      return {
+        success: true,
+        context: {
+          ...context,
+          rateLimit: {
+            remaining: maxRequests - limitData.count,
+            resetTime: limitData.resetTime,
+          },
+        },
+      };
+    } catch (error) {
       return {
         success: false,
-        error: 'Rate limit exceeded',
-        remaining: 0,
+        error: 'Rate limiting failed',
       };
     }
+  };
+};
 
-    // Increment count
-    current.count++;
-    rateLimitStore.set(clientId, current);
+// Helper function to get client IP from headers
+function getClientIP(request: NextRequest): string {
+  // Try different headers in order of preference
+  const forwardedFor = request.headers.get('x-forwarded-for');
+  const realIP = request.headers.get('x-real-ip');
+  const cfConnectingIP = request.headers.get('cf-connecting-ip'); // Cloudflare
+  const remoteAddr = request.headers.get('remote-addr');
 
-    return { success: true, remaining: maxRequests - current.count };
-  } catch (error) {
-    console.error('Rate limiting error:', error);
-    // Don't block requests if rate limiting fails
-    return { success: true };
+  if (forwardedFor) {
+    // x-forwarded-for can contain multiple IPs, take the first one
+    return forwardedFor.split(',')[0].trim();
   }
+
+  if (realIP) {
+    return realIP;
+  }
+
+  if (cfConnectingIP) {
+    return cfConnectingIP;
+  }
+
+  if (remoteAddr) {
+    return remoteAddr;
+  }
+
+  // Fallback for development/unknown cases
+  return 'unknown';
 }
 
-function getClientId(request: NextRequest): string {
-  // Use IP address as client identifier
-  const forwarded = request.headers.get('x-forwarded-for');
-  const ip = forwarded ? forwarded.split(',')[0] : 'unknown';
-  return ip;
+// Helper function for common rate limiting scenarios
+export function applyRateLimit(options: RateLimitOptions) {
+  return rateLimitMiddleware(options);
 }
+
+// Pre-configured rate limiters
+export const standardRateLimit = rateLimitMiddleware({
+  maxRequests: 100,
+  windowMs: 15 * 60 * 1000, // 15 minutes
+});
+
+export const strictRateLimit = rateLimitMiddleware({
+  maxRequests: 10,
+  windowMs: 60 * 1000, // 1 minute
+});
+
+export const authRateLimit = rateLimitMiddleware({
+  maxRequests: 5,
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  keyGenerator: request => {
+    // Rate limit by IP for auth endpoints
+    return `auth:${getClientIP(request)}`;
+  },
+});

@@ -1,9 +1,11 @@
 ;
 // app/(admin)/layout.tsx
+
+// app/(admin)/layout.tsx
 import { Metadata } from 'next';
 import { AuthGuard } from '@/_shared/components/auth/auth-guard';
 import { AdminProvider } from '@/_shared/lib/admin-context';
-import { AdminBreadcrumbs } from './_components/admin-breadcrumbs';
+import { AdminBreadCrumbs } from '@/(admin)/_components/admin-breadcrumbs';
 import { AdminHeader } from './_components/admin-nav';
 
 
@@ -34,7 +36,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
 
             <main className="flex-1">
               {/* Uses group-specific component */}
-              <AdminBreadcrumbs />
+              <AdminBreadCrumbs />
 
               <div className="p-6">{children}</div>
             </main>

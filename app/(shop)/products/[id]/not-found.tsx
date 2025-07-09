@@ -2,10 +2,10 @@
 // app/(shop)/products/[id]/not-found.tsx (enhanced existing)
 import { Metadata } from 'next';
 import { ShoppingBag } from 'lucide-react';
-import { NotFoundLayout } from '@components/error/not-found-layout';
-import { SuggestedProducts } from '@components/error/suggested-products';
-import { generateNotFoundMetadata } from '@lib/not-found-utils';
-import { SuggestionEngine } from '@lib/suggestions';
+import { NotFoundLayout } from '@/_shared/components/error/not-found-layout';
+import { SuggestedProducts } from '@/_shared/components/error/suggested-products';
+import { generateNotFoundMetadata } from '@/_shared/lib/not-found-utils';
+import { SuggestionEngine } from '@/_shared/lib/suggestions';
 
 
 export const metadata: Metadata = generateNotFoundMetadata(

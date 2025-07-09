@@ -1,7 +1,7 @@
 // app/(admin)/error.tsx (8 lines)
 'use client';
 
-import { SmartError } from '@components/ui/smart-error';
+import { SmartError } from '@/_shared/components/ui/smart-error';
 
 export default function AdminError({
   error,

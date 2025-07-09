@@ -24,11 +24,8 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@components/*": [
-        "components/*"
-      ],
-      "@lib/*": [
-        "lib/*"
+      "@/*": [
+        "./app/*"
       ],
       "@/_shared/*": [
         "app/_shared/*"
@@ -48,8 +45,17 @@
       "@/(internal)/*": [
         "app/(internal)/*"
       ],
-      "@/(public)/*": [
-        "app/(public)/*"
+      "@/shared/*": [
+        "./app/_shared/*"
+      ],
+      "@/components/*": [
+        "./app/_shared/components/*"
+      ],
+      "@/lib/*": [
+        "./app/_shared/lib/*"
+      ],
+      "@/types/*": [
+        "./app/_shared/types/*"
       ]
     }
   },

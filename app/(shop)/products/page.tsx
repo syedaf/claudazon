@@ -1,8 +1,8 @@
 import { Product } from 'app/_shared/types/types';
-import { CategoryCard } from '@components/category/category-card';
-import { ProductCard } from '@components/product/product-card';
-import { categories } from '@lib/data/categories';
-import { products } from '@lib/data/products';
+import { CategoryCard } from '@/_shared/components/category/category-card';
+import { ProductCard } from '@/_shared/components/product/product-card';
+import { categories } from '@/_shared/lib/data/categories';
+import { products } from '@/_shared/lib/data/products';
 
 export default function ProductsPage() {
   return (

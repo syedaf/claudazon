@@ -1,6 +1,6 @@
 ;
 // app/(shop)/products/loading.tsx
-import { ProductCardSkeleton } from '@components/ui/skeleton';
+import { ProductCardSkeleton } from '@/_shared/components/ui/skeleton';
 
 
 export default function ProductsLoading() {

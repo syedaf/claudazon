@@ -1,36 +1,50 @@
+;
 // app/(api)/_middleware/compose.ts
-type MiddlewareFunction = (
+import { NextRequest, NextResponse } from 'next/server';
+
+
+// Define proper types instead of 'any'
+export interface MiddlewareContext {
+  user?: {
+    id: string;
+    email: string;
+    role: string;
+  };
+  rateLimit?: {
+    remaining: number;
+    resetTime: number;
+  };
+  validation?: {
+    isValid: boolean;
+    errors: string[];
+  };
+}
+
+export type MiddlewareFunction = (
   request: NextRequest,
-  context?: any
-) => Promise<{ success: boolean; error?: string; context?: any }>;
+  context: MiddlewareContext
+) => Promise<{ success: boolean; error?: string; context?: MiddlewareContext }>;
 
 export function composeMiddleware(...middlewares: MiddlewareFunction[]) {
-  return async (request: NextRequest) => {
-    let context = {};
+  return async (request: NextRequest): Promise<NextResponse> => {
+    let context: MiddlewareContext = {};
 
     for (const middleware of middlewares) {
       const result = await middleware(request, context);
 
       if (!result.success) {
-        return result;
+        return NextResponse.json(
+          { error: result.error || 'Middleware failed' },
+          { status: 400 }
+        );
       }
 
-      context = { ...context, ...result.context };
+      if (result.context) {
+        context = { ...context, ...result.context };
+      }
     }
 
-    return { success: true, context };
+    // If all middleware passed, continue to the actual route handler
+    return NextResponse.next();
   };
 }
-
-// Usage in API routes
-export const standardApiMiddleware = composeMiddleware(
-  validateAuth,
-  validateRequest,
-  applyRateLimit
-);
-
-export const adminApiMiddleware = composeMiddleware(
-  req => validateAuth(req, { requiredRole: 'admin' }),
-  validateRequest,
-  applyRateLimit
-);

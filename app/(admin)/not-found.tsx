@@ -2,8 +2,8 @@
 // app/(admin)/not-found.tsx
 import { Metadata } from 'next';
 import { Shield } from 'lucide-react';
-import { NotFoundLayout } from '@components/error/not-found-layout';
-import { generateNotFoundMetadata } from '@lib/not-found-utils';
+import { NotFoundLayout } from '@/_shared/components/error/not-found-layout';
+import { generateNotFoundMetadata } from '@/_shared/lib/not-found-utils';
 
 
 export const metadata: Metadata = generateNotFoundMetadata(

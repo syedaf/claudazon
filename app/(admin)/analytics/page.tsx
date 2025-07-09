@@ -1,6 +1,6 @@
 ;
 /* app/(admin)/analytics/page.tsx */
-import { AnalyticsDashboard } from '@components/analytics/analytics-dashboard';
+import { AnalyticsDashboard } from '@/_shared/components/analytics/analytics-dashboard';
 
 
 export default function AnalyticsPage() {

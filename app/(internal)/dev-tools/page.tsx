@@ -1,10 +1,9 @@
-;
+import { ComponentShowcase } from '@/(internal)/_components/components-showcase';
+// app/(internal)/dev-tools/page.tsx
 // app/(internal)/dev-tools/page.tsx
 import { ApiExplorer } from '../_components/api-tester';
-import { ComponentShowcase } from '../_components/component-showcase';
 import { PerformanceMonitor } from '../_components/performance-monitor';
 import { RouteGroupAnalyzer } from '../_components/route-group-analyzer';
-
 
 export default function DevToolsPage() {
   return (

@@ -3,7 +3,7 @@
 
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import { analytics } from '@lib/analytics';
+import { analytics } from '@/lib/analytics';
 
 export default function AuthTemplate({
   children,

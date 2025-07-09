@@ -3,8 +3,8 @@
 
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import { PageTracker } from '@components/analytics/page-tracker';
-import { analytics } from '@lib/analytics';
+import { PageTracker } from '@/_shared/components/analytics/page-tracker';
+import { analytics, Analytics } from '@/_shared/lib/analytics';
 
 export default function ShopTemplate({
   children,
@@ -24,7 +24,7 @@ export default function ShopTemplate({
     /* Track shopping funnel step */
     const funnelStep = getFunnelStep(pathname);
     if (funnelStep) {
-      analytics.track('funnel_step', {
+      Analytics.track('funnel_step', {
         step: funnelStep,
         pathname,
       });

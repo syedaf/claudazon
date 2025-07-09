@@ -3,10 +3,10 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, ArrowRight, Grid, List, SlidersHorizontal } from 'lucide-react';
-import { ProductCard } from '@components/product/product-card';
-import { Button } from '@components/ui/button';
-import { categories } from '@lib/data/categories';
-import { products } from '@lib/data/products';
+import { ProductCard } from '@/_shared/components/product/product-card';
+import { Button } from '@/_shared/components/ui/button';
+import { categories } from '@/_shared/lib/data/categories';
+import { products } from '@/_shared/lib/data/products';
 
 
 interface BrowsePageProps {

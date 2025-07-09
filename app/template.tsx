@@ -3,8 +3,8 @@
 
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import { analytics } from '@lib/analytics';
-import { LoadingManager } from '@lib/loading-utils';
+import { LoadingManager } from '@/_shared/lib/loading-utils';
+import { analytics } from '@/lib/analytics';
 
 export default function RootTemplate({
   children,

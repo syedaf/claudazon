@@ -1,7 +1,7 @@
 // app/error.tsx (10 lines)
 'use client';
 
-import { SmartError } from '@components/ui/smart-error';
+import { SmartError } from '@/_shared/components/ui/smart-error';
 
 export default function GlobalError({
   error,

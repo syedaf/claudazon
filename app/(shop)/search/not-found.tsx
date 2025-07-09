@@ -3,10 +3,10 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Search } from 'lucide-react';
-import { NotFoundLayout } from '@components/error/not-found-layout';
-import { SearchBar } from '@components/search/search-bar';
-import { generateNotFoundMetadata } from '@lib/not-found-utils';
-import { SuggestionEngine } from '@lib/suggestions';
+import { NotFoundLayout } from '@/_shared/components/error/not-found-layout';
+import { SearchBar } from '@/_shared/components/search/search-bar';
+import { generateNotFoundMetadata } from '@/_shared/lib/not-found-utils';
+import { SuggestionEngine } from '@/_shared/lib/suggestions';
 
 
 export const metadata: Metadata = generateNotFoundMetadata(
