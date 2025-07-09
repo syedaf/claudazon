@@ -1,7 +1,7 @@
 ;
 // lib/data/products.ts
 // lib/data/products.ts
-import { Product } from '@lib/types';
+import { Product } from 'app/_shared/types/types';
 
 
 export const products: Product[] = [

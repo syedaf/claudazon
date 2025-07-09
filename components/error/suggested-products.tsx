@@ -1,8 +1,8 @@
 ;
 // components/error/suggested-products.tsx
 import Link from 'next/link';
+import { Product } from 'app/_shared/types/types';
 import { ProductCard } from '@components/product/product-card';
-import { Product } from '@lib/types';
 
 
 interface SuggestedProductsProps {

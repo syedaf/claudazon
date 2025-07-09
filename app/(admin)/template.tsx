@@ -1,11 +1,10 @@
-/* app/(admin)/template.tsx */
+// app/(admin)/template.tsx
 'use client';
 
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import { AdminMonitor } from '@components/monitoring/admin-monitor';
-import { analytics } from '@lib/analytics';
-import { sessionManager } from '@lib/session';
+import { analytics } from '@/_shared/lib/analytics';
+import { AdminActivityMonitor } from './_components/admin-monitor';
 
 export default function AdminTemplate({
   children,
@@ -15,36 +14,23 @@ export default function AdminTemplate({
   const pathname = usePathname();
 
   useEffect(() => {
-    /* Validate admin access on every navigation */
-    const hasAdminAccess = sessionManager.validateAdminAccess();
-
-    if (!hasAdminAccess) {
-      /* In real app, redirect to login */
-      console.warn('🚨 Unauthorized admin access attempt');
-      analytics.track('unauthorized_admin_access', {
-        pathname,
-        timestamp: Date.now(),
-        sessionId: sessionManager.getSession().id,
-      });
-      return;
-    }
-
-    /* Track admin activity */
+    // Track admin activity with enhanced context
     analytics.track('admin_page_access', {
       pathname,
       timestamp: Date.now(),
-      adminId: sessionManager.getSession().userId || 'demo_admin',
-      sessionId: sessionManager.getSession().id,
+      userAgent: navigator.userAgent,
+      group: 'admin',
+      sessionType: 'admin_session',
     });
 
-    /* Update session activity */
-    sessionManager.updateActivity();
+    // Admin-specific security logging
+    console.log(`[ADMIN ACCESS] ${pathname} at ${new Date().toISOString()}`);
   }, [pathname]);
 
   return (
     <>
-      <AdminMonitor />
-      {children}
+      <AdminActivityMonitor />
+      <div className="admin-template-wrapper">{children}</div>
     </>
   );
 }

@@ -29,6 +29,27 @@
       ],
       "@lib/*": [
         "lib/*"
+      ],
+      "@/_shared/*": [
+        "app/_shared/*"
+      ],
+      "@/(admin)/*": [
+        "app/(admin)/*"
+      ],
+      "@/(auth)/*": [
+        "app/(auth)/*"
+      ],
+      "@/(shop)/*": [
+        "app/(shop)/*"
+      ],
+      "@/(api)/*": [
+        "app/(api)/*"
+      ],
+      "@/(internal)/*": [
+        "app/(internal)/*"
+      ],
+      "@/(public)/*": [
+        "app/(public)/*"
       ]
     }
   },
