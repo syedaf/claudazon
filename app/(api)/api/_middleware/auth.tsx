@@ -1,7 +1,7 @@
 ;
 // app/(api)/_middleware/auth.ts
 import { NextRequest } from 'next/server';
-import { MiddlewareContext, MiddlewareFunction } from './compose';
+import { MiddlewareContext, MiddlewareFunction } from 'app/(api)/api/_middleware/compose';
 
 
 export const authMiddleware: MiddlewareFunction = async (

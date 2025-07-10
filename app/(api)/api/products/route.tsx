@@ -1,12 +1,12 @@
 ;
 // app/(api)/products/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { ProductService } from '@/_shared/lib/product-service';
-import { ApiResponse, Product } from '@/_shared/types/api';
-import { validateAuth } from '../_middleware/auth';
-import { MiddlewareContext } from '../_middleware/compose';
-import { applyRateLimit } from '../_middleware/rate-limit';
-import { validateRequest } from '../_middleware/validation';
+import { validateAuth } from '@/(api)/api/_middleware/auth';
+import { MiddlewareContext } from '@/(api)/api/_middleware/compose';
+import { applyRateLimit } from '@/(api)/api/_middleware/rate-limit';
+import { validateRequest } from '@/(api)/api/_middleware/validation';
+import { ProductService } from '@/lib/product-service';
+import { ApiResponse, Product } from '@/types/api';
 
 
 // GET /api/products

@@ -364,7 +364,7 @@ export default async function SearchPage({
                     key={product.id}
                     className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-200 group"
                   >
-                    <Link href={`/products/${product.id}`}>
+                    <Link href={`/(api)/api/products/${product.id}`}>
                       <div className="aspect-square relative overflow-hidden">
                         <Image
                           src={product.imageUrl}
@@ -375,7 +375,7 @@ export default async function SearchPage({
                       </div>
                     </Link>
                     <div className="p-4">
-                      <Link href={`/products/${product.id}`}>
+                      <Link href={`/(api)/api/products/${product.id}`}>
                         <h3 className="font-medium text-gray-900 hover:text-blue-600 transition-colors mb-2 line-clamp-2">
                           {product.title}
                         </h3>
@@ -421,7 +421,7 @@ export default async function SearchPage({
                   >
                     <div className="flex gap-4">
                       <div className="flex-shrink-0">
-                        <Link href={`/products/${product.id}`}>
+                        <Link href={`/(api)/api/products/${product.id}`}>
                           <Image
                             src={product.imageUrl}
                             alt={product.title}
@@ -432,7 +432,7 @@ export default async function SearchPage({
                         </Link>
                       </div>
                       <div className="flex-1">
-                        <Link href={`/products/${product.id}`}>
+                        <Link href={`/(api)/api/products/${product.id}`}>
                           <h3 className="text-lg font-medium text-gray-900 hover:text-blue-600 transition-colors mb-2">
                             {product.title}
                           </h3>
