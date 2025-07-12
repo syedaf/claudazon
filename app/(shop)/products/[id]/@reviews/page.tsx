@@ -1,13 +1,15 @@
 import { ProductReviews } from '@/(shop)/products/_components/detail';
 
 interface ReviewsSlotProps {
-  params: { id: string };
+  params: Promise<{ id: string }>; // ✅ Updated to Promise
 }
 
-export default function ReviewsSlot({ params }: ReviewsSlotProps) {
+export default async function ReviewsSlot({ params }: ReviewsSlotProps) {
+  const { id } = await params; // ✅ Added await
+
   return (
     <div className="py-6">
-      <ProductReviews productId={params.id} />
+      <ProductReviews productId={id} />
     </div>
   );
 }

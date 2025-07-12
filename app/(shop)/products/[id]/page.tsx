@@ -1,57 +1,111 @@
-import { ProductGallery } from '@/(shop)/products/_components/detail';
+import Link from 'next/link';
+import { TestLinks } from './test-links'; // ✅ Import client component
 
 interface ProductPageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
-export default function ProductPage({ params }: ProductPageProps) {
+export default async function ProductPage({ params }: ProductPageProps) {
+  const { id } = await params;
+
+  // Mock product images for demo
+  const productImages = [
+    { id: 'img001', alt: 'Product Front View' },
+    { id: 'img002', alt: 'Product Side View' },
+    { id: 'img003', alt: 'Product Detail View' },
+  ];
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      {/* Left: Product Gallery */}
-      <div>
-        <ProductGallery productId={params.id} />
+      {/* Product Images Section - ENHANCED */}
+      <div className="space-y-4">
+        <h2 className="text-lg font-semibold">Product Gallery</h2>
+
+        {/* Main Image with Intercept Route Link */}
+        <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
+          <Link href={`/photo/${productImages[0].id}`}>
+            <img
+              src={`https://picsum.photos/600/600?random=${productImages[0].id}`}
+              alt={productImages[0].alt}
+              className="w-full h-full object-cover cursor-pointer hover:scale-105 transition-transform"
+            />
+          </Link>
+        </div>
+
+        {/* Thumbnail Images */}
+        <div className="grid grid-cols-3 gap-2">
+          {productImages.map(image => (
+            <Link
+              key={image.id}
+              href={`/photo/${image.id}`}
+              className="aspect-square bg-gray-100 rounded-lg overflow-hidden hover:ring-2 hover:ring-blue-500"
+            >
+              <img
+                src={`https://picsum.photos/200/200?random=${image.id}`}
+                alt={image.alt}
+                className="w-full h-full object-cover cursor-pointer"
+              />
+            </Link>
+          ))}
+        </div>
+
+        {/* Demo Notice */}
+        <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+          <p className="text-sm text-yellow-800">
+            <strong>🎯 Intercept Routes Demo:</strong> Click any image above.
+            Notice it opens in a modal overlay instead of navigating to a new
+            page!
+          </p>
+        </div>
       </div>
 
-      {/* Right: Basic Product Info */}
+      {/* Product Info Section */}
       <div className="space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">
-            Premium Product {params.id}
+          <h1 className="text-3xl font-bold text-gray-900">
+            Sample Product {id}
           </h1>
-          <div className="flex items-center space-x-2 mb-4">
-            <div className="flex text-yellow-400">
-              {'★'.repeat(4)}
-              {'☆'.repeat(1)}
-            </div>
-            <span className="text-sm text-gray-600">(247 reviews)</span>
-          </div>
-          <p className="text-3xl font-bold text-gray-900 mb-4">$299.99</p>
-          <p className="text-gray-700 mb-6">
-            Experience premium quality with this carefully crafted product.
-            Perfect for everyday use with exceptional durability and style.
+          <p className="text-gray-600 mt-2">
+            This product page demonstrates intercept routes. Click the images to
+            see the modal overlay in action!
           </p>
         </div>
 
-        {/* Quick Actions */}
-        <div className="space-y-3">
-          <button className="w-full bg-[#ff9900] text-black font-medium py-3 px-6 rounded-lg hover:bg-[#e88900] transition-colors">
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <span className="text-2xl font-bold text-gray-900">$99.99</span>
+            <span className="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">
+              In Stock
+            </span>
+          </div>
+
+          <div className="space-y-2">
+            <h3 className="font-semibold">Description</h3>
+            <p className="text-gray-600">
+              A sample product created to demonstrate Next.js intercept routes
+              functionality. The images above use intercept routes to show
+              modals when clicked from this page, but will show full pages when
+              accessed directly.
+            </p>
+          </div>
+
+          <div className="space-y-2">
+            <h3 className="font-semibold">Features</h3>
+            <ul className="list-disc list-inside text-gray-600 space-y-1">
+              <li>Intercept route modal demonstration</li>
+              <li>Fallback route for direct access</li>
+              <li>Responsive image gallery</li>
+              <li>Amazon-style user experience</li>
+            </ul>
+          </div>
+
+          <button className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors">
             Add to Cart
-          </button>
-          <button className="w-full border border-gray-300 text-gray-700 font-medium py-3 px-6 rounded-lg hover:bg-gray-50 transition-colors">
-            Add to Wishlist
           </button>
         </div>
 
-        {/* Basic Specs Preview */}
-        <div className="border-t border-gray-200 pt-6">
-          <h3 className="font-medium text-gray-900 mb-3">Key Features</h3>
-          <ul className="space-y-2 text-sm text-gray-600">
-            <li>• Premium materials and construction</li>
-            <li>• 1-year manufacturer warranty</li>
-            <li>• Free shipping on orders over $25</li>
-            <li>• 30-day return policy</li>
-          </ul>
-        </div>
+        {/* Test Links - CLIENT COMPONENT */}
+        <TestLinks />
       </div>
     </div>
   );

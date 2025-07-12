@@ -1,13 +1,15 @@
 import { ProductSpecs } from '@/(shop)/products/_components/detail';
 
 interface SpecsSlotProps {
-  params: { id: string };
+  params: Promise<{ id: string }>; // ✅ Updated to Promise
 }
 
-export default function SpecsSlot({ params }: SpecsSlotProps) {
+export default async function SpecsSlot({ params }: SpecsSlotProps) {
+  const { id } = await params; // ✅ Added await
+
   return (
     <div className="py-6">
-      <ProductSpecs productId={params.id} />
+      <ProductSpecs productId={id} />
 
       {/* Additional Specs Content */}
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -24,7 +26,7 @@ export default function SpecsSlot({ params }: SpecsSlotProps) {
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600">Item model number</span>
-              <span className="text-gray-900">PT-{params.id}</span>
+              <span className="text-gray-900">PT-{id}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600">Batteries Required?</span>
@@ -40,7 +42,7 @@ export default function SpecsSlot({ params }: SpecsSlotProps) {
           <div className="space-y-2 text-sm">
             <div className="flex justify-between">
               <span className="text-gray-600">ASIN</span>
-              <span className="text-gray-900">B0{params.id.toUpperCase()}</span>
+              <span className="text-gray-900">B0{id.toUpperCase()}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600">Customer Reviews</span>

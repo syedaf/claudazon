@@ -3,7 +3,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import Link from 'next/link';
 
 interface ProductGalleryProps {
   productId: string;
@@ -16,81 +16,67 @@ export function ProductGallery({
 }: ProductGalleryProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Default images if none provided
+  // Default images with IDs for intercept routes
   const defaultImages = [
-    'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=400&fit=crop',
-    'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop',
-    'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=400&fit=crop',
+    {
+      id: 'img001',
+      url: 'https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=400&fit=crop',
+    },
+    {
+      id: 'img002',
+      url: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop',
+    },
+    {
+      id: 'img003',
+      url: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=400&fit=crop',
+    },
   ];
-
-  const galleryImages = images.length > 0 ? images : defaultImages;
-
-  const nextImage = () => {
-    setCurrentImageIndex(prev =>
-      prev === galleryImages.length - 1 ? 0 : prev + 1
-    );
-  };
-
-  const prevImage = () => {
-    setCurrentImageIndex(prev =>
-      prev === 0 ? galleryImages.length - 1 : prev - 1
-    );
-  };
 
   return (
     <div className="space-y-4">
-      {/* Main Image */}
-      <div className="relative aspect-square bg-gray-100 rounded-lg overflow-hidden">
-        <Image
-          src={galleryImages[currentImageIndex]}
-          alt={`Product ${productId} - Image ${currentImageIndex + 1}`}
-          fill
-          className="object-cover"
-          priority
-        />
+      {/* Main Image - CLICKABLE FOR MODAL */}
+      <Link href={`/photo/${defaultImages[currentImageIndex].id}`}>
+        <div className="relative aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer hover:opacity-95">
+          <Image
+            src={defaultImages[currentImageIndex].url}
+            alt={`Product ${productId} - Image ${currentImageIndex + 1}`}
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+      </Link>
 
-        {/* Navigation Arrows */}
-        {galleryImages.length > 1 && (
-          <>
-            <button
-              onClick={prevImage}
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors"
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </button>
-            <button
-              onClick={nextImage}
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors"
-            >
-              <ChevronRight className="h-4 w-4" />
-            </button>
-          </>
-        )}
+      {/* Thumbnail Grid - EACH CLICKABLE FOR MODAL */}
+      <div className="grid grid-cols-3 gap-2">
+        {defaultImages.map((image, index) => (
+          <Link
+            key={image.id}
+            href={`/photo/${image.id}`}
+            className={`relative aspect-square rounded-md overflow-hidden border-2 hover:ring-2 hover:ring-blue-500 ${
+              index === currentImageIndex
+                ? 'border-blue-500'
+                : 'border-gray-200'
+            }`}
+          >
+            <Image
+              src={image.url}
+              alt={`Product ${productId} - Thumbnail ${index + 1}`}
+              fill
+              className="object-cover"
+            />
+          </Link>
+        ))}
       </div>
 
-      {/* Thumbnail Grid */}
-      {galleryImages.length > 1 && (
-        <div className="grid grid-cols-4 gap-2">
-          {galleryImages.map((image, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentImageIndex(index)}
-              className={`relative aspect-square rounded-md overflow-hidden border-2 transition-colors ${
-                index === currentImageIndex
-                  ? 'border-blue-500'
-                  : 'border-gray-200 hover:border-gray-300'
-              }`}
-            >
-              <Image
-                src={image}
-                alt={`Product ${productId} - Thumbnail ${index + 1}`}
-                fill
-                className="object-cover"
-              />
-            </button>
-          ))}
-        </div>
-      )}
+      {/* Demo Notice */}
+      <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+        <p className="text-sm text-yellow-800">
+          <strong>🎯 Intercept Routes Demo:</strong> Click any image above.
+          Notice it opens in a modal overlay instead of navigating to a new
+          page!
+        </p>
+      </div>
     </div>
   );
 }
