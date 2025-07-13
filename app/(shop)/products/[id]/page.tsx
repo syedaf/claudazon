@@ -1,111 +1,119 @@
-import Link from 'next/link';
-import { TestLinks } from './test-links'; // ✅ Import client component
+// app/(shop)/products/[id]/page.tsx
+// Updated product page with demo toggle button
+'use client';
+
+import { Heart, Share, ShoppingCart, Star } from 'lucide-react';
+import { useSlotContext } from '@/components/slot-context/slot-context';
+import Badge from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface ProductPageProps {
   params: Promise<{ id: string }>;
 }
 
-export default async function ProductPage({ params }: ProductPageProps) {
-  const { id } = await params;
-
-  // Mock product images for demo
-  const productImages = [
-    { id: 'img001', alt: 'Product Front View' },
-    { id: 'img002', alt: 'Product Side View' },
-    { id: 'img003', alt: 'Product Detail View' },
-  ];
+export default function ProductPage({ params }: ProductPageProps) {
+  const { isLoggedIn, toggleLogin, userRole } = useSlotContext();
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      {/* Product Images Section - ENHANCED */}
+    <div className="grid lg:grid-cols-2 gap-8">
+      {/* Product Image */}
       <div className="space-y-4">
-        <h2 className="text-lg font-semibold">Product Gallery</h2>
-
-        {/* Main Image with Intercept Route Link */}
-        <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
-          <Link href={`/photo/${productImages[0].id}`}>
-            <img
-              src={`https://picsum.photos/600/600?random=${productImages[0].id}`}
-              alt={productImages[0].alt}
-              className="w-full h-full object-cover cursor-pointer hover:scale-105 transition-transform"
-            />
-          </Link>
-        </div>
-
-        {/* Thumbnail Images */}
-        <div className="grid grid-cols-3 gap-2">
-          {productImages.map(image => (
-            <Link
-              key={image.id}
-              href={`/photo/${image.id}`}
-              className="aspect-square bg-gray-100 rounded-lg overflow-hidden hover:ring-2 hover:ring-blue-500"
-            >
-              <img
-                src={`https://picsum.photos/200/200?random=${image.id}`}
-                alt={image.alt}
-                className="w-full h-full object-cover cursor-pointer"
-              />
-            </Link>
-          ))}
-        </div>
-
-        {/* Demo Notice */}
-        <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
-          <p className="text-sm text-yellow-800">
-            <strong>🎯 Intercept Routes Demo:</strong> Click any image above.
-            Notice it opens in a modal overlay instead of navigating to a new
-            page!
-          </p>
+        <div className="aspect-square bg-muted rounded-lg flex items-center justify-center">
+          <div className="text-center text-muted-foreground">
+            <div className="text-4xl mb-2">📱</div>
+            <p>Product Image</p>
+          </div>
         </div>
       </div>
 
-      {/* Product Info Section */}
+      {/* Product Info */}
       <div className="space-y-6">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">
-            Sample Product {id}
-          </h1>
-          <p className="text-gray-600 mt-2">
-            This product page demonstrates intercept routes. Click the images to
-            see the modal overlay in action!
-          </p>
-        </div>
-
-        <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <span className="text-2xl font-bold text-gray-900">$99.99</span>
-            <span className="bg-green-100 text-green-800 px-2 py-1 rounded text-sm">
-              In Stock
+          <Badge variant="secondary" className="mb-2">
+            Electronics
+          </Badge>
+          <h1 className="text-3xl font-bold">Premium Smartphone Pro</h1>
+          <div className="flex items-center gap-2 mt-2">
+            <div className="flex">
+              {[1, 2, 3, 4, 5].map(star => (
+                <Star
+                  key={star}
+                  className="h-4 w-4 fill-yellow-400 text-yellow-400"
+                />
+              ))}
+            </div>
+            <span className="text-sm text-muted-foreground">
+              4.7 (2,847 reviews)
             </span>
           </div>
-
-          <div className="space-y-2">
-            <h3 className="font-semibold">Description</h3>
-            <p className="text-gray-600">
-              A sample product created to demonstrate Next.js intercept routes
-              functionality. The images above use intercept routes to show
-              modals when clicked from this page, but will show full pages when
-              accessed directly.
-            </p>
-          </div>
-
-          <div className="space-y-2">
-            <h3 className="font-semibold">Features</h3>
-            <ul className="list-disc list-inside text-gray-600 space-y-1">
-              <li>Intercept route modal demonstration</li>
-              <li>Fallback route for direct access</li>
-              <li>Responsive image gallery</li>
-              <li>Amazon-style user experience</li>
-            </ul>
-          </div>
-
-          <button className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors">
-            Add to Cart
-          </button>
         </div>
 
-        {/* Test Links - CLIENT COMPONENT */}
-        <TestLinks />
+        <div className="space-y-2">
+          <div className="text-3xl font-bold text-primary">$899.99</div>
+          <div className="text-sm text-muted-foreground line-through">
+            $1,199.99
+          </div>
+          <Badge variant="destructive">25% OFF</Badge>
+        </div>
+
+        {/* Slot-based Rendering Demo Controls */}
+        <Card className="bg-blue-50 border-blue-200">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-sm text-blue-800">
+              🎯 Use Case #15 Demo: Slot-based Rendering
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <div className="text-sm">
+              <span className="font-medium">Status:</span>{' '}
+              {isLoggedIn ? '✅ Logged In' : '❌ Not Logged In'}
+              <br />
+              <span className="font-medium">User Role:</span> {userRole}
+            </div>
+            <Button
+              onClick={toggleLogin}
+              variant={isLoggedIn ? 'destructive' : 'default'}
+              size="sm"
+              className="w-full"
+            >
+              {isLoggedIn
+                ? 'Sign Out (Hide Reviews)'
+                : 'Sign In (Show Reviews)'}
+            </Button>
+            <p className="text-xs text-blue-700">
+              Toggle to see conditional slot rendering below ⬇️
+            </p>
+          </CardContent>
+        </Card>
+
+        <div className="flex gap-3">
+          <Button className="flex-1">
+            <ShoppingCart className="h-4 w-4 mr-2" />
+            Add to Cart
+          </Button>
+          <Button variant="outline" size="icon">
+            <Heart className="h-4 w-4" />
+          </Button>
+          <Button variant="outline" size="icon">
+            <Share className="h-4 w-4" />
+          </Button>
+        </div>
+
+        <div className="space-y-2 text-sm">
+          <div className="flex justify-between">
+            <span>Free shipping</span>
+            <span className="text-green-600">✓</span>
+          </div>
+          <div className="flex justify-between">
+            <span>2-day delivery</span>
+            <span className="text-green-600">✓</span>
+          </div>
+          <div className="flex justify-between">
+            <span>30-day returns</span>
+            <span className="text-green-600">✓</span>
+          </div>
+        </div>
       </div>
     </div>
   );

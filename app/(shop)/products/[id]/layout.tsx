@@ -1,31 +1,40 @@
-import { TabNavigation } from '@/(shop)/products/_components/tabs';
+;
+// File 3: app/(shop)/products/[id]/layout.tsx
+// Updated layout to include SlotProvider and conditional slot rendering
+import { SlotProvider } from '@/components/slot-context/slot-context';
+
 
 interface ProductLayoutProps {
   children: React.ReactNode;
   reviews: React.ReactNode;
   specs: React.ReactNode;
   qa: React.ReactNode;
-  params: Promise<{ id: string }>; // ✅ Updated to Promise
 }
 
-export default async function ProductLayout({
+export default function ProductLayout({
   children,
   reviews,
   specs,
   qa,
-  params,
 }: ProductLayoutProps) {
-  const { id } = await params; // ✅ Added await
-
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
-      {/* Main Product Content */}
-      <div className="mb-8">{children}</div>
+    <SlotProvider>
+      <div className="container mx-auto px-4 py-8">
+        {/* Main product content */}
+        <div className="mb-8">{children}</div>
 
-      {/* Tab Navigation and Parallel Slots */}
-      <div className="border-t border-gray-200 pt-8">
-        <TabNavigation productId={id} slots={{ reviews, specs, qa }} />
+        {/* Conditional Slot Rendering - Use Case #15 Demo */}
+        <div className="grid gap-6">
+          {/* Reviews slot - conditionally rendered */}
+          <div className="w-full">{reviews}</div>
+
+          {/* Specs slot - always shown */}
+          <div className="w-full">{specs}</div>
+
+          {/* Q&A slot - always shown */}
+          <div className="w-full">{qa}</div>
+        </div>
       </div>
-    </div>
+    </SlotProvider>
   );
 }
