@@ -49,7 +49,7 @@
         "./app/_shared/*"
       ],
       "@/components/*": [
-        "./app/_shared/components/*"
+        "./app/components/*"
       ],
       "@/lib/*": [
         "./app/_shared/lib/*"

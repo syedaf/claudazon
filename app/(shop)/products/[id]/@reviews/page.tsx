@@ -3,9 +3,13 @@
 'use client';
 
 import { MessageCircle, Star, ThumbsUp, User } from 'lucide-react';
-import { useSlotContext } from '@/components/slot-context/slot-context';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useSlotContext } from '@/shared/components/slot-context/slot-context';
+import { Button } from '@/shared/components/ui/button';
+import Card, {
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from '@/shared/components/ui/card';
 
 
 // Mock reviews data

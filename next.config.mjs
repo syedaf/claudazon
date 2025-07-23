@@ -6,6 +6,12 @@ const __dirname = path.dirname(__filename);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    appDir: true,
+    serverComponents: true, // 🆕 NEW
+    serverComponentsExternalPackages: [], // 🆕 NEW
+  },
+
   webpack: config => {
     config.resolve.alias = {
       ...config.resolve.alias,

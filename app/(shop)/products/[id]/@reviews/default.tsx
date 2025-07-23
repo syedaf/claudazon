@@ -1,10 +1,20 @@
 ;
+
 // app/(shop)/products/[id]/@reviews/default.tsx
 
 // Fallback content when reviews slot is conditionally hidden
 import { Lock, MessageCircle } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/shared/components/ui/button';
+import Card, { CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
+
+
+
+
+
+
+
+
+
 
 
 // import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';

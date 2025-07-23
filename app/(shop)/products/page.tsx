@@ -1,45 +1,29 @@
-import { Product } from 'app/_shared/types/types';
-import { CategoryCard } from '@/_shared/components/category/category-card';
-import { ProductCard } from '@/_shared/components/product/product-card';
-import { categories } from '@/_shared/lib/data/categories';
-import { products } from '@/_shared/lib/data/products';
+import { Suspense } from 'react';
+import ProductListServer from '@/components/server-components/product-list-server';
 
 export default function ProductsPage() {
   return (
-    <div>
-      {/* Page Title */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Products</h1>
-        <p className="text-gray-600">
-          Discover our collection of amazing products
-        </p>
-        <div className="fixed bottom-4 right-4 bg-white border border-gray-300 rounded-lg p-4 shadow-lg">
-          <h4 className="text-sm font-semibold mb-2">Dev Error Test</h4>
-        </div>
-      </div>
+    <div className="container mx-auto p-4">
+      <h1 className="text-3xl font-bold mb-6">Our Products</h1>
 
-      {/* Categories Section */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-          Shop by Category
-        </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-          {categories.map(category => (
-            <CategoryCard key={category.id} category={category} />
-          ))}
+      {/* ✅ Server Component with Suspense for loading */}
+      <Suspense fallback={<ProductsLoading />}>
+        <ProductListServer />
+      </Suspense>
+    </div>
+  );
+}
+
+function ProductsLoading() {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      {Array.from({ length: 8 }).map((_, i) => (
+        <div key={i} className="border rounded-lg p-4 animate-pulse">
+          <div className="w-full h-48 bg-gray-200 mb-2"></div>
+          <div className="h-4 bg-gray-200 mb-2"></div>
+          <div className="h-4 bg-gray-200 w-1/2"></div>
         </div>
-      </section>
-      {/* Featured Products Section */}
-      <section>
-        <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-          Featured Products
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {products.map((product: Product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      </section>
+      ))}
     </div>
   );
 }

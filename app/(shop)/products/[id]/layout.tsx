@@ -1,7 +1,8 @@
 ;
 // File 3: app/(shop)/products/[id]/layout.tsx
 // Updated layout to include SlotProvider and conditional slot rendering
-import { SlotProvider } from '@/components/slot-context/slot-context';
+
+import { SlotProvider } from '@/_shared/components/slot-context/slot-context';
 
 
 interface ProductLayoutProps {
