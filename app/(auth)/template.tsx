@@ -1,9 +1,9 @@
 /* app/(auth)/template.tsx */
 'use client';
 
+import { analytics } from '@/shared/lib/analytics';
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import { analytics } from '@/lib/analytics';
 
 export default function AuthTemplate({
   children,

@@ -52,7 +52,7 @@
         "./app/components/*"
       ],
       "@/lib/*": [
-        "./app/_shared/lib/*"
+        "./app/lib/*"
       ],
       "@/types/*": [
         "./app/_shared/types/*"

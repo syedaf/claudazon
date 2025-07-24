@@ -1,8 +1,4 @@
-;
-// lib/not-found-utils.tsx
-
-import { analytics } from '@/lib/analytics';
-
+import { analytics } from '@/shared/lib/analytics';
 
 export interface NotFoundContext {
   section: string;

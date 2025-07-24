@@ -2,9 +2,9 @@
 'use client';
 
 import { useEffect } from 'react';
+import { analytics } from '@/shared/lib/analytics';
 import { usePathname } from 'next/navigation';
 import { LoadingManager } from '@/_shared/lib/loading-utils';
-import { analytics } from '@/lib/analytics';
 
 export default function RootTemplate({
   children,
