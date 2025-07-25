@@ -1,10 +1,9 @@
-import { AdminDashboardData } from '@/_types/user-roles.types';
-import { AdminNav } from '@/dashboard/_components/admin-nav';
-import { AdminStats } from '@/dashboard/_components/admin-stats';
+import { AdminNav } from '../_components/admin-nav';
+import { AdminStats } from '../_components/admin-stats';
+import { AdminDashboardData } from '../../_types/user-roles.types';
 
-// Mock data fetch - replace with real API call
+// Mock data fetch
 async function getAdminDashboardData(): Promise<AdminDashboardData> {
-  // Simulate API call
   await new Promise(resolve => setTimeout(resolve, 100));
 
   return {
@@ -25,12 +24,6 @@ async function getAdminDashboardData(): Promise<AdminDashboardData> {
         description: 'New user registration: john@example.com',
         timestamp: new Date(Date.now() - 300000),
       },
-      {
-        id: '3',
-        type: 'product' as const,
-        description: 'Product "iPhone 15 Pro" inventory low',
-        timestamp: new Date(Date.now() - 600000),
-      },
     ],
   };
 }
@@ -45,7 +38,7 @@ export default async function AdminDashboardPage() {
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
           <p className="mt-1 text-gray-600">
-            Manage your Claudazon store operations
+            Use Case #19: Conditional Routes - Admin View
           </p>
         </div>
         <AdminNav />

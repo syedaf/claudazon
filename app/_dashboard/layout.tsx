@@ -1,5 +1,5 @@
+import { DashboardHeader } from '@/_dashboard/_components/dashboard-header';
 import { getUserRoleServer } from '@/_utils/role-detector';
-import { DashboardHeader } from '@/dashboard/_components/dashboard-header';
 import { RoleNav } from '@/shared/components/navigation/role-nav';
 import { RoleProvider } from '@/shared/providers/role-provider';
 

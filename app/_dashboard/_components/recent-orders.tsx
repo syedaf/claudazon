@@ -60,7 +60,7 @@ export function RecentOrders({ orders }: RecentOrdersProps) {
                     ${order.total.toFixed(2)}
                   </span>
                   <Link
-                    href={`/dashboard/customer/orders/${order.id}`}
+                    href={`/_dashboard/customer/orders/${order.id}`}
                     className="text-blue-600 hover:text-blue-800 text-sm font-medium"
                   >
                     View Details →

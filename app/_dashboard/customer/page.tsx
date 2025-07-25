@@ -1,10 +1,10 @@
 ;
 // Mock data with correct Product interface
 
+import { CustomerStats } from '@/_dashboard/_components/customer-stats';
+import { RecentOrders } from '@/_dashboard/_components/recent-orders';
+import { Recommendations } from '@/_dashboard/_components/recommendations';
 import { CustomerDashboardData } from '@/_types/user-roles.types';
-import { CustomerStats } from '@/dashboard/_components/customer-stats';
-import { RecentOrders } from '@/dashboard/_components/recent-orders';
-import { Recommendations } from '@/dashboard/_components/recommendations';
 
 
 async function getCustomerDashboardData(): Promise<CustomerDashboardData> {
