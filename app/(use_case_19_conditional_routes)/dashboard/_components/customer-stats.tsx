@@ -1,4 +1,4 @@
-import { CustomerDashboardData } from '../../_types/user-roles.types';
+import { CustomerDashboardData } from 'app/(use_case_19_conditional_routes)/_types/user-roles.types';
 
 interface CustomerStatsProps {
   data: CustomerDashboardData;

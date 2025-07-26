@@ -1,6 +1,6 @@
+import { AdminDashboardData } from 'app/(use_case_19_conditional_routes)/_types/user-roles.types';
 import { AdminNav } from '../_components/admin-nav';
 import { AdminStats } from '../_components/admin-stats';
-import { AdminDashboardData } from '../../_types/user-roles.types';
 
 // Mock data fetch
 async function getAdminDashboardData(): Promise<AdminDashboardData> {

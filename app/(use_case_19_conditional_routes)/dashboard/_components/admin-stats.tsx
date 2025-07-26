@@ -1,4 +1,4 @@
-import { AdminDashboardData } from '../../_types/user-roles.types';
+import { AdminDashboardData } from 'app/(use_case_19_conditional_routes)/_types/user-roles.types';
 
 interface AdminStatsProps {
   data: AdminDashboardData;

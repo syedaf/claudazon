@@ -1,10 +1,10 @@
-import { AdminDashboardData } from '../../_types/user-roles.types';
+import { AdminDashboardData } from '@/_types/user-roles.types';
 
 interface AdminStatsProps {
   data: AdminDashboardData;
 }
 
-export function AdminStats({ data }: AdminStatsProps) {
+export default function AdminStats({ data }: AdminStatsProps) {
   const stats = [
     {
       label: 'Total Products',

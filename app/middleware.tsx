@@ -79,6 +79,6 @@ export async function middleware(request: NextRequest) {
   return response;
 }
 
-export const config = {
-  matcher: ['/dashboard/:path*', '/api/dashboard/:path*'],
-};
+export const runtime = 'edge';
+
+export const matcher = ['/((?!_next/static|_next/image|favicon.ico).*)'];

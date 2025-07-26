@@ -1,4 +1,4 @@
-import { Order } from '../../_types/user-roles.types';
+import { Order } from 'app/(use_case_19_conditional_routes)/_types/user-roles.types';
 
 interface RecentOrdersProps {
   orders: Order[];

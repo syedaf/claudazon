@@ -1,6 +1,5 @@
 import { AdminNav } from '@/_dashboard/_components/admin-nav';
 import { AdminDashboardData } from '@/_types/user-roles.types';
-import { AdminStats } from '@/(admin)/_components/admin-stats';
 
 // Mock data fetch - replace with real API call
 async function getAdminDashboardData(): Promise<AdminDashboardData> {
@@ -52,7 +51,27 @@ export default async function AdminDashboardPage() {
       </div>
 
       {/* Stats Overview */}
-      <AdminStats data={dashboardData} />
+      <div className="bg-white p-6 rounded-lg shadow">
+        <h3 className="text-lg font-semibold mb-4">Admin Stats</h3>
+        <div className="grid grid-cols-4 gap-4">
+          <div>
+            <p className="text-sm text-gray-600">Products</p>
+            <p className="text-2xl font-bold">{dashboardData.totalProducts}</p>
+          </div>
+          <div>
+            <p className="text-sm text-gray-600">Users</p>
+            <p className="text-2xl font-bold">{dashboardData.totalUsers}</p>
+          </div>
+          <div>
+            <p className="text-sm text-gray-600">Orders</p>
+            <p className="text-2xl font-bold">{dashboardData.totalOrders}</p>
+          </div>
+          <div>
+            <p className="text-sm text-gray-600">Revenue</p>
+            <p className="text-2xl font-bold">${dashboardData.revenue}</p>
+          </div>
+        </div>
+      </div>
 
       {/* Recent Activity */}
       <div className="bg-white rounded-lg shadow p-6">

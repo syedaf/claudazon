@@ -1,4 +1,4 @@
-import { Product } from '../../_types/user-roles.types';
+import { Product } from 'app/(use_case_19_conditional_routes)/_types/user-roles.types';
 
 interface RecommendationsProps {
   products: Product[];
