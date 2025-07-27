@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { ReviewFilters } from '@/(use_case_20_nested_layouts)/reviews/components/review-filters';
 import { ReviewHeader } from '@/(use_case_20_nested_layouts)/reviews/components/review-header';
